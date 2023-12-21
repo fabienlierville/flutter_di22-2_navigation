@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:navigation/pages/bottom_page.dart';
 
 class SimplePage extends StatefulWidget {
   const SimplePage({super.key});
@@ -21,7 +22,26 @@ class _SimplePageState extends State<SimplePage> {
                 child: Text("Simple")
             ),
             Padding(padding: EdgeInsets.only(top: 30)),
-            Text("Vous avez choisi : ${_choix}")
+            Text("Vous avez choisi : ${_choix}"),
+            ElevatedButton(
+                onPressed: (){
+                  Navigator.pushNamed(
+                      context,
+                      "/snack",
+                  );
+                },
+                child: Text("Vers Snack Page")
+            ),
+            ElevatedButton(
+                onPressed: (){
+                  Navigator.pushNamedAndRemoveUntil(
+                      context,
+                      "/snack",
+                      ModalRoute.withName("/snack")
+                  );
+                },
+                child: Text("Vers Snack Page RACINE")
+            )
           ],
         ),
       ),

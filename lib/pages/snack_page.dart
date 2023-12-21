@@ -1,4 +1,8 @@
+import 'dart:io';
+
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:navigation/pages/simple_page.dart';
 
 class SnackPage extends StatefulWidget {
   const SnackPage({super.key, required this.title});
@@ -19,7 +23,38 @@ class _SnackPageState extends State<SnackPage> {
             FilledButton(
                 onPressed: callSnack,
                 child: Text("SnackBar")
-            )
+            ),
+            ElevatedButton(
+                onPressed: (){
+                  if(Platform.isIOS){
+                    Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (BuildContext builder){
+                          return SimplePage();
+                        })
+                    );
+                  }else{
+                    Navigator.pushNamed(context, "/simple");
+                    /*
+                    Navigator.push(
+                        context,
+                        CupertinoPageRoute(builder: (BuildContext builder){
+                          return SimplePage();
+                        })
+                    );
+
+                     */
+                  }
+
+                },
+                child: Text("Vers Simple Page")
+            ),
+            ElevatedButton(
+                onPressed: (){
+                  Navigator.pop(context);
+                },
+                child: Text("Retour arrière")
+            ),
           ],
         ),
       ),
